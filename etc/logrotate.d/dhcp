@@ -1,0 +1,14 @@
+/opt/dnsmasq/dhcp/dhcp.log {
+        daily
+        su ubuntu ubuntu
+        missingok
+        rotate 31
+        notifempty
+        nocompress
+        sharedscripts
+        postrotate
+                [ ! -f /var/run/dnsmasq/dnsmasq.pid ] || kill -USR2 `cat /var/run/dnsmasq/dnsmasq.pid`
+        endscript
+        create 0644 ubuntu ubuntu
+}
+
